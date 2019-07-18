@@ -1,5 +1,16 @@
 {
   "name": "ngrx-soft-cache",
+  "homepage": "https://github.com/browsepedia/ngrx-soft-cache",
+  "keywords": ["angular", "ngrx", "caching", "frontend caching", "redux"],
+  "repository": {
+    "url": "https://github.com/browsepedia/ngrx-soft-cache",
+    "type": "git"
+  },
+  "author": {
+    "name": "Vlad Gheorghita",
+    "email": "vlad@browsepedia.com",
+    "url": "https://github.com/browsepedia"
+  },
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^8.0.3",
