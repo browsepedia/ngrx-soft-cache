@@ -2,6 +2,12 @@
 
 Frontend soft caching mechanism to cache requests in the ngrx state.
 
+## Install
+```cmd
+  npm install --save ngrx-soft-cache
+```
+
+## Usage
 ```ts
 import * as fromCache from 'ngrx-soft-cache';
 
