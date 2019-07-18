@@ -39,7 +39,7 @@ constructor(private store: Store<State>){
 
 ## Store data direcly without doing a HTTP call
 ```ts
-  this.store.dispatch(fromCache.SetItem({ key: 'hello', world: 'world' });
+  this.store.dispatch(fromCache.SetItem({ key: 'hello', data: 'world' });
   // to remove
   this.store.dispatch(fromCache.RemoveItem({ key: 'hello' }));
  ```
