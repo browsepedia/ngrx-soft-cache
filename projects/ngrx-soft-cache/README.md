@@ -1,24 +1,45 @@
-# NgrxSoftCache
+# Ngrx Soft Cache 
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+Frontend soft caching mechanism to cache requests in the ngrx state.
 
-## Code scaffolding
+## Install
+```cmd
+  npm install --save ngrx-soft-cache
+```
 
-Run `ng generate component component-name --project ngrx-soft-cache` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngrx-soft-cache`.
-> Note: Don't forget to add `--project ngrx-soft-cache` or else it will be added to the default project in your `angular.json` file. 
+## Usage
+```ts
+import * as fromCache from 'ngrx-soft-cache';
 
-## Build
+// ...
+constructor(private store: Store<State>){
+  // ...
+  
+  // Does the api calls (GET Requests) and stores the data in the cache.
+  this.store.dispatch(fromCache.LoadCachedOrFetch({
+      urls: [
+        { url: 'http://dummy.restapiexample.com/api/v1/employees' },
+        { url: 'http://dummy.restapiexample.com/api/v1/employee/22435' },
+      ]
+    }));
+   
+   this.cached = this.store.select(fromCache.selectMultipleFromCache, {
+      urls: [
+        'http://dummy.restapiexampleasdasd.com/api/v1/employees',
+        'http://dummy.restapiexample.com/api/v1/employee/22435'
+      ]
+    });
+  }
+```
 
-Run `ng build ngrx-soft-cache` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Mark as stale
+```ts
+  this.store.dispatch(fromCache.MarkAsStale({ url: 'http://dummy.restapiexample.com/api/v1/employees' });
+```
 
-## Publishing
-
-After building your library with `ng build ngrx-soft-cache`, go to the dist folder `cd dist/ngrx-soft-cache` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ngrx-soft-cache` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Store data direcly without doing a HTTP call
+```ts
+  this.store.dispatch(fromCache.SetItem({ key: 'hello', data: 'world' });
+  // to remove
+  this.store.dispatch(fromCache.RemoveItem({ key: 'hello' }));
+ ```

@@ -1,27 +1,45 @@
-# NgrxSoftCacheProject
+# Ngrx Soft Cache 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+Frontend soft caching mechanism to cache requests in the ngrx state.
 
-## Development server
+## Install
+```cmd
+  npm install --save ngrx-soft-cache
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Usage
+```ts
+import * as fromCache from 'ngrx-soft-cache';
 
-## Code scaffolding
+// ...
+constructor(private store: Store<State>){
+  // ...
+  
+  // Does the api calls (GET Requests) and stores the data in the cache.
+  this.store.dispatch(fromCache.LoadCachedOrFetch({
+      urls: [
+        { url: 'http://dummy.restapiexample.com/api/v1/employees' },
+        { url: 'http://dummy.restapiexample.com/api/v1/employee/22435' },
+      ]
+    }));
+   
+   this.cached = this.store.select(fromCache.selectMultipleFromCache, {
+      urls: [
+        'http://dummy.restapiexampleasdasd.com/api/v1/employees',
+        'http://dummy.restapiexample.com/api/v1/employee/22435'
+      ]
+    });
+  }
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Mark as stale
+```ts
+  this.store.dispatch(fromCache.MarkAsStale({ url: 'http://dummy.restapiexample.com/api/v1/employees' });
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Store data direcly without doing a HTTP call
+```ts
+  this.store.dispatch(fromCache.SetItem({ key: 'hello', data: 'world' });
+  // to remove
+  this.store.dispatch(fromCache.RemoveItem({ key: 'hello' }));
+ ```
