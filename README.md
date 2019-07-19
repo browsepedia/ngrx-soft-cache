@@ -73,7 +73,9 @@ is returned as ```ts true ```.
 You can also do a POST request and store the data (GET is the default)
 ```ts
   this.store.dispatch(fromCache.LoadCachedOrFetch({
-    { url: myUrl, method: 'post', body: myBody }
+    urls: [
+      { url: myUrl, method: 'post', body: myBody }
+    ]
   }));
 ```
 
