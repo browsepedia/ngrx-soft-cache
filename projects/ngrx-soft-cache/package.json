@@ -13,11 +13,10 @@
   },
   "version": "0.0.3",
   "peerDependencies": {
-    "@angular/common": "^8.0.3",
-    "@angular/core": "^8.0.3",
-    "@angular/http": "",
-    "@ngrx/store": "^8.1.0",
-    "@ngrx/effects": "^8.1.0",
-    "rxjs": "6.5.2"
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@ngrx/store": "^8.0.0",
+    "@ngrx/effects": "^8.0.0",
+    "rxjs": "^6.4.0"
   }
 }

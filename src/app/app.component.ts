@@ -23,7 +23,7 @@ export class AppComponent {
     this.store.select(fromCache.selectFromCache, { url: 'http://dummy.restapiexample.com/api/v1/employees' }).subscribe((data) => console.log(data));
     this.store.select(fromCache.selectMultipleFromCache, {
       urls: [
-        'http://dummy.restapiexampleasdasd.com/api/v1/employees',
+        'http://dummy.restapiexample.com/api/v1/employees',
         'http://dummy.restapiexample.com/api/v1/employee/22435'
       ]
     }).subscribe(console.log)
